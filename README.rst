@@ -24,7 +24,7 @@ However, sometimes we just need to use Choices rather than all the features prov
 Requirements
 ------------
 
-* Python >= 3.5
+* Python >= 3.6
 
 
 Usage
