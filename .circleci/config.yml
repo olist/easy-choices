@@ -1,0 +1,45 @@
+install-deps: &install-deps
+  name: install dependencies
+  command: |
+    python3 -m venv venv
+    . venv/bin/activate
+    pip install -e ".[dev]"
+
+run-linters: &run-linters
+  name: run linters
+  command: |
+    . venv/bin/activate
+    SKIP=no-commit-to-branch pre-commit run -a -v
+
+run-tests: &run-tests
+  name: run tests
+  command: |
+    . venv/bin/activate
+    pytest -vv -s --cov . --cov-report=term-missing --cov-report=html
+
+version: 2
+jobs:
+  py36:
+    docker:
+      - image: circleci/python:3.6.8
+    steps:
+      - checkout
+      - run: *install-deps
+      - run: *run-linters
+      - run: *run-tests
+
+  py37:
+    docker:
+      - image: circleci/python:3.7.3
+    steps:
+      - checkout
+      - run: *install-deps
+      - run: *run-linters
+      - run: *run-tests
+
+workflows:
+  version: 2
+  test:
+    jobs:
+      - py36
+      - py37
