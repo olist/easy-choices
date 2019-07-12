@@ -1,5 +1,4 @@
 import pytest
-
 from easy_choices import Choices
 from easy_choices.exceptions import (
     ChoicesIsEmpty,
