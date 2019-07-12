@@ -1,7 +1,17 @@
 easy-choices
 =============
+|version_lib| |python-versions| |license| |circleci|
 
-.. image:: https://circleci.com/gh/olist/easy-choices.svg?style=shield
+.. |version_lib| image:: https://badge.fury.io/py/easy-choices.svg
+    :target: https://badge.fury.io/py/easy-choices
+
+.. |python-versions| image:: https://img.shields.io/badge/python-3.6,3.7-blue.svg
+    :target: https://github.com/olist/easy-choices
+
+.. |license| image:: https://img.shields.io/pypi/l/easy-choices.svg
+    :target: https://github.com/olist/easy-cho
+
+.. |circleci| image:: https://circleci.com/gh/olist/easy-choices.svg?style=shield
     :target: https://circleci.com/gh/olist/easy-choices
 
 
