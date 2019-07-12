@@ -1,6 +1,10 @@
 easy-choices
 =============
 
+.. image:: https://circleci.com/gh/olist/easy-choices.svg?style=shield
+    :target: https://circleci.com/gh/olist/easy-choices
+
+
 It's a library deeply inspired by Choices from `django-model-utils`_.
 However, sometimes we just need to use Choices rather than all the features provided by `django-model-utils`_.
 
@@ -18,75 +22,33 @@ Usage
 
 The ``easy-choices`` package is hosted on our `PyPI repository`_.
 
+.. _PyPI repository: https://pypi.org/user/olist/
+
 You can install the latest version of ``easy-choices`` using pip:
 
-.. code-block:: shell
+.. code-block:: bash
 
    $ pip install easy-choices
 
-.. _PyPI repository: https://pypi.org/user/olist/
+
+And use easy-choices as it's demonstrated below:
 
 
-Development
------------
+.. code-block:: python
 
-General guideline
-~~~~~~~~~~~~~~~~~
+    from django.db import models
+    from easy_choices import Choices
 
-easy-choices is a library built to be used by community in several projects, for that reason, try do not:
+    status_choices = Choices(
+        ("sent", "Sent"),
+        ("delivered", "Delivered"),
+    )
 
-* Include compiled dependencies (binaries or platform-specific)
-* Include code without tests and documentation
-* Include application specific code (eg, it could be reused?)
-* Dependency pin
-* Do not break backward compatibility
+    class Product(models.Model)
+        price = models.DecimalField(max_digits=10, decimal_places=2)
+        status = models.CharField(max_length=10, choices=status_choices.to_django_choices())
 
-
-Local installation
-~~~~~~~~~~~~~~~~~~
-
-First of all, it's assumed that you have virtualenv installed on your machine.
-
-Clone our repository:
-
-.. code-block:: shell
-
-   $ git clone git@github.com:olist/easy-choices.git
-
-   $ cd easy-choices
-
-Create a virtualenv:
-
-.. code-block:: shell
-
-   $ virtualenv .venv
-
-Activate it:
-
-.. code-block:: shell
-
-   $ source .venv/bin/activate
-
-Then install the requirements of development:
-
-.. code-block:: shell
-
-   $ make dev-requirements
-
-
-Tests
-~~~~~
-
-We use ``pytest`` and to avoid a flood of fixtures, try to isolate your tests
-and your fixtures inside a folder within ``tests`` folder.
-
-Common fixutres are allowed, but think if they make sense to any other code
-reuse that fixture.
-
-Before running our test suite it's assumed that you have already installed the requirements of development.
-
-Run tests executing the following command:
-
-.. code-block:: shell
-
-   $ make test
+        @property
+        def is_delivered(self):
+            # You can use status_choices as a Enum
+            return self.status == status_choices.delivered
