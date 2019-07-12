@@ -11,7 +11,14 @@ HERE = pathlib.Path(__file__).parent
 README = (HERE / "README.rst").read_text()
 
 
-DEVELOPMENT_REQUIREMENTS = ["black", "isort", "pre-commit", "pytest", "pytest-cov", "tox"]
+DEVELOPMENT_REQUIREMENTS = [
+    "black",
+    "isort",
+    "pre-commit",
+    "pytest",
+    "pytest-cov",
+    "tox",
+]
 
 
 setup(
@@ -34,7 +41,5 @@ setup(
     packages=find_packages("src"),
     package_dir={"": "src"},
     py_modules=[splitext(basename(path))[0] for path in glob("src/*.py")],
-    extras_require={
-        "dev": DEVELOPMENT_REQUIREMENTS,
-    },
+    extras_require={"dev": DEVELOPMENT_REQUIREMENTS},
 )
