@@ -9,7 +9,7 @@ easy-choices
     :target: https://github.com/olist/easy-choices
 
 .. |license| image:: https://img.shields.io/pypi/l/easy-choices.svg
-    :target: https://github.com/olist/easy-cho
+    :target: https://github.com/olist/easy-choices
 
 .. |circleci| image:: https://circleci.com/gh/olist/easy-choices.svg?style=shield
     :target: https://circleci.com/gh/olist/easy-choices
